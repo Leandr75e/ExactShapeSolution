@@ -1,0 +1,765 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-dark: #171830;
+    --color-primary: #242C5E;
+    --color-light: #F5F1EE;
+    --color-beige: #FBEFD9;
+    --color-accent: #E95625;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* La police Questrial ressemble à 95% à ITC Avant Garde */
+    font-family: 'Questrial', sans-serif;
+    
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+    font-family: 'Questrial', sans-serif;
+    /* On force le gras simulé car Questrial n'a qu'une seule graisse, 
+       cela donne un aspect très graphique */
+    font-weight: 400; 
+    letter-spacing: -0.02em; /* Un peu serré */
+}
+
+h3, h4, .nav-links a, .cta-button {
+    font-family: 'Questrial', sans-serif;
+    letter-spacing: 0.05em; /* Un peu espacé pour la lisibilité */
+}
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 5%;
+    background: rgba(23, 24, 48, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(245, 241, 238, 0.1);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 1rem 5%;
+    background: rgba(23, 24, 48, 0.98);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    padding: 5px 0;
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+
+header.scrolled .logo img {
+    height: 35px; 
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.lang-switch {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--color-light);
+    color: var(--color-light);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.lang-switch:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 5%;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    z-index: 0;
+}
+
+.hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, var(--color-light) 2px, var(--color-light) 3px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, var(--color-light) 2px, var(--color-light) 3px);
+    background-size: 40px 40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+/* Grille 3D animée en arrière-plan */
+.perspective-grid-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1b2044 0%, #171830 100%);
+    perspective: 1200px;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.grid-floor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%; 
+    height: 250%;
+    transform: translate(-50%, -50%) rotateX(60deg);
+    transform-origin: center center;
+    background-image: 
+        linear-gradient(to right, rgba(233, 86, 37, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 80px 80px; 
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    will-change: background-position-y;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+/* Animation de pulsation subtile de la grille */
+@keyframes gridPulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+/* Lignes d'accentuation qui bougent */
+.grid-floor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(to right, transparent 0%, rgba(233, 86, 37, 0.4) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: scanLine 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanLine {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Points lumineux aléatoires (effet scan 3D) */
+.grid-floor::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 4px;
+    height: 4px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 
+        200px 100px 0 rgba(233, 86, 37, 0.8),
+        400px 300px 0 rgba(233, 86, 37, 0.6),
+        150px 450px 0 rgba(233, 86, 37, 0.7),
+        600px 200px 0 rgba(233, 86, 37, 0.5),
+        300px 500px 0 rgba(233, 86, 37, 0.9);
+    animation: pointsFlicker 3s ease-in-out infinite;
+}
+
+@keyframes pointsFlicker {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+#presentation, #engagement, #projets, #methode, #contact {
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+#presentation::before, 
+#engagement::before, 
+#projets::before, 
+#methode::before, 
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+}
+
+#presentation::before, #projets::before, #contact::before {
+    background: rgba(36, 44, 94, 0.25); /* Plus transparent (était 0.4) */
+}
+
+#engagement::before, #methode::before {
+    background: rgba(23, 24, 48, 0.35); /* Plus transparent (était 0.6) */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.hero h1 .accent {
+    color: var(--color-accent);
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 3rem;
+    color: var(--color-beige);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 86, 37, 0.3);
+}
+
+/* Section Styles */
+section {
+    padding: 8rem 5%;
+    position: relative;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-light);
+    font-weight: 600;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-beige);
+    margin-bottom: 3rem;
+    opacity: 0.9;
+}
+
+/* Presentation Section */
+#presentation {
+    background: var(--color-primary);
+}
+
+.presentation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.presentation-card {
+    padding: 2rem;
+    background: rgba(245, 241, 238, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(245, 241, 238, 0.1);
+    transition: all 0.3s ease;
+}
+
+.presentation-card:hover {
+    transform: translateY(-5px);
+    background: rgba(245, 241, 238, 0.08);
+    border-color: var(--color-accent);
+}
+
+.presentation-card h3 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Engagement Section */
+#engagement {
+    background: var(--color-dark);
+}
+
+.engagement-list {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.engagement-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.engagement-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.engagement-content h3 {
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.engagement-content p {
+    color: var(--color-beige);
+    opacity: 0.9;
+}
+
+/* Projects Section */
+#projets {
+    background: var(--color-primary);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.project-card {
+    background: rgba(245, 241, 238, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(245, 241, 238, 0.1);
+    transition: all 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-beige);
+    font-size: 3rem;
+    opacity: 0.3;
+}
+
+.project-content {
+    padding: 2rem;
+}
+
+.project-content h3 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.project-content h4 {
+    color: var(--color-light);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.project-content p {
+    color: var(--color-beige);
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+/* Method Section */
+#methode {
+    background: var(--color-dark);
+}
+
+.method-timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding-left: 3rem;
+}
+
+.method-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-accent);
+}
+
+.method-step {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+}
+
+.method-step::before {
+    content: '';
+    position: absolute;
+    left: -3.5rem;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    border: 4px solid var(--color-dark);
+}
+
+.method-step h3 {
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: var(--color-light);
+}
+
+.method-step p {
+    color: var(--color-beige);
+    opacity: 0.9;
+}
+
+/* Contact Section */
+#contact {
+    background: var(--color-primary);
+    text-align: center;
+}
+
+#contact .section-title {
+    margin-bottom: 2rem;
+}
+
+#contact p {
+    font-size: 1.2rem;
+    color: var(--color-beige);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1.5rem; 
+    padding: 3rem 5%;
+    background: var(--color-dark);
+    border-top: 1px solid rgba(245, 241, 238, 0.1);
+}
+
+.footer-logo {
+    height: 40px; 
+    width: auto;
+    opacity: 0.8; 
+    transition: opacity 0.3s ease;
+}
+
+footer p {
+    color: var(--color-beige);
+    opacity: 0.7;
+}
+
+.footer-logo:hover {
+    opacity: 1; 
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ====================================
+   ANIMATIONS 3D AJOUTÉES
+==================================== */
+
+/* ====================================
+   1. PARTICULES FLOTTANTES
+==================================== */
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 10px rgba(233, 86, 37, 0.8);
+    animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(var(--drift));
+    }
+}
+
+/* Variantes de taille pour diversité */
+.particle.small {
+    width: 2px;
+    height: 2px;
+    animation-duration: 10s;
+}
+
+.particle.large {
+    width: 4px;
+    height: 4px;
+    animation-duration: 6s;
+}
+
+/* ====================================
+   2. WIREFRAME 3D
+==================================== */
+#wireframe-container {
+    position: fixed;
+    top: 20%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+/* ====================================
+   3. MESH 3D INTERACTIF
+==================================== */
+#mesh-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#mesh-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ====================================
+   OPTIMISATION MOBILE
+==================================== */
+@media (max-width: 768px) {
+    /* Désactiver le mesh 3D sur mobile pour performances */
+    #mesh-container {
+        display: none;
+    }
+    
+    /* Réduire le nombre de particules via durée plus longue */
+    .particle {
+        animation-duration: 12s;
+    }
+    
+    /* Wireframe plus petit sur mobile */
+    #wireframe-container {
+        width: 200px;
+        height: 200px;
+        right: 2%;
+        top: 15%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    section {
+        padding: 5rem 5%;
+    }
+
+    .method-timeline {
+        padding-left: 2rem;
+    }
+
+    .method-step::before {
+        left: -2.5rem;
+    }
+}

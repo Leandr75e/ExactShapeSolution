@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title data-i18n="meta.title">ExactShape Solutions - Numérisation 3D & Rétro-ingénierie</title>
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="perspective-grid-container">
+    <div class="grid-floor"></div>
+</div>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <img src="logo+name.png" alt="ExactShape Solutions Logo">
+            </a>
+            <div class="nav-links">
+                <a href="#presentation" data-i18n="nav.activity">Activité</a>
+                <a href="#engagement" data-i18n="nav.commitment">Engagement</a>
+                <a href="#projets" data-i18n="nav.projects">Projets</a>
+                <a href="#methode" data-i18n="nav.method">Méthode</a>
+                <a href="#contact" data-i18n="nav.contact">Contact</a>
+                <button class="lang-switch" id="langSwitch">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <h1 data-i18n="hero.title">Numérisation 3D & <span class="accent">Rétro-ingénierie</span></h1>
+            <p data-i18n="hero.subtitle">Transformation de pièces physiques en modèles 3D exploitables. Précision, méthode et résultats fiables pour vos projets techniques.</p>
+            <a href="#contact" class="cta-button" data-i18n="hero.cta">Discutons de votre projet</a>
+        </div>
+    </section>
+
+    <section id="presentation" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="presentation.title">Ce que je fais</h2>
+            <p class="section-subtitle" data-i18n="presentation.subtitle">ExactShape Solutions accompagne vos besoins en numérisation 3D et rétro-ingénierie</p>
+            
+            <div class="presentation-grid">
+                <div class="presentation-card">
+                    <h3 data-i18n="presentation.card1.title">Scan 3D</h3>
+                    <p data-i18n="presentation.card1.text">Numérisation précise de pièces physiques pour capturer leur géométrie complexe et créer une base de travail fiable.</p>
+                </div>
+                <div class="presentation-card">
+                    <h3 data-i18n="presentation.card2.title">Rétro-ingénierie</h3>
+                    <p data-i18n="presentation.card2.text">Transformation de scans 3D en modèles CAO exploitables, adaptés à vos besoins de fabrication ou de modification.</p>
+                </div>
+                <div class="presentation-card">
+                    <h3 data-i18n="presentation.card3.title">Modélisation CAO</h3>
+                    <p data-i18n="presentation.card3.text">Création de modèles 3D précis à partir de pièces existantes, avec une attention particulière portée à l'exploitabilité du résultat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engagement" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="engagement.title">Mon engagement</h2>
+            <p class="section-subtitle" data-i18n="engagement.subtitle">Une méthode rigoureuse pour des résultats fiables et exploitables</p>
+            
+            <div class="engagement-list">
+                <div class="engagement-item">
+                    <div class="engagement-number">1</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step1.title">Définition du besoin</h3>
+                        <p data-i18n="engagement.step1.text">Chaque projet commence par une compréhension claire de vos objectifs et contraintes techniques. Cette étape est essentielle pour garantir un résultat aligné avec vos attentes.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">2</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step2.title">Cadrage du résultat</h3>
+                        <p data-i18n="engagement.step2.text">Nous établissons ensemble les critères de qualité et les spécifications techniques du livrable, pour une base de travail solide et partagée.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">3</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step3.title">Ajustements intégrés</h3>
+                        <p data-i18n="engagement.step3.text">La démarche inclut des validations intermédiaires et des ajustements si nécessaire, pour garantir que le résultat final correspond exactement à votre besoin.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">4</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step4.title">Résultat exploitable</h3>
+                        <p data-i18n="engagement.step4.text">Le modèle livré est pensé pour être directement utilisable dans votre chaîne de production, modification ou fabrication.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="projects.title">Exemples de projets</h2>
+            <p class="section-subtitle" data-i18n="projects.subtitle">Situations types traitées et valeur apportée</p>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🔧</div>
+                    <div class="project-content">
+                        <h3 data-i18n="projects.card1.title">Pièce cassée ou introuvable</h3>
+                        <h4 data-i18n="projects.common.need">Besoin</h4>
+                        <p data-i18n="projects.card1.need">Remplacer une pièce qui n'est plus disponible ou dont les plans n'existent pas.</p>
+                        <h4 data-i18n="projects.common.work">Travail réalisé</h4>
+                        <p data-i18n="projects.card1.work">Scan 3D de la pièce existante (ou des fragments), rétro-ingénierie et modélisation CAO pour permettre la refabrication.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">⚙️</div>
+                    <div class="project-content">
+                        <h3 data-i18n="projects.card2.title">Adaptation d'une pièce</h3>
+                        <h4 data-i18n="projects.common.need">Besoin</h4>
+                        <p data-i18n="projects.card2.need">Modifier une pièce existante pour l'adapter à un nouveau contexte ou à de nouvelles contraintes.</p>
+                        <h4 data-i18n="projects.common.work">Travail réalisé</h4>
+                        <p data-i18n="projects.card2.work">Numérisation de la pièce d'origine, modélisation CAO et intégration des modifications requises pour le nouveau cahier des charges.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📐</div>
+                    <div class="project-content">
+                        <h3 data-i18n="projects.card3.title">Alignement de scan existant</h3>
+                        <h4 data-i18n="projects.common.need">Besoin</h4>
+                        <p data-i18n="projects.card3.need">Exploiter un scan 3D déjà réalisé mais non référencé ou mal orienté.</p>
+                        <h4 data-i18n="projects.common.work">Travail réalisé</h4>
+                        <p data-i18n="projects.card3.work">Mise en référence du scan dans un système de coordonnées cohérent, nettoyage et préparation pour utilisation en CAO.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methode" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="method.title">Ma méthode de travail</h2>
+            <p class="section-subtitle" data-i18n="method.subtitle">Un processus clair et transparent, de l'expression du besoin à la livraison</p>
+            
+            <div class="method-timeline">
+                <div class="method-step">
+                    <h3 data-i18n="method.step1.title">1. Compréhension du besoin</h3>
+                    <p data-i18n="method.step1.text">Échange initial pour clarifier vos objectifs, contraintes techniques et contexte d'utilisation du modèle final.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step2.title">2. Définition de l'approche</h3>
+                    <p data-i18n="method.step2.text">Proposition d'une méthode adaptée (scan, rétro-ingénierie, modélisation) et validation du cadre de travail.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step3.title">3. Travail et ajustements</h3>
+                    <p data-i18n="method.step3.text">Réalisation du projet avec des points de validation intermédiaires pour garantir l'alignement avec vos attentes.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step4.title">4. Livraison du résultat</h3>
+                    <p data-i18n="method.step4.text">Remise du modèle 3D final dans le format souhaité, prêt à être intégré dans votre processus de travail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="contact.title">Parlons de votre projet</h2>
+            <p data-i18n="contact.text">Vous avez un besoin en numérisation 3D ou rétro-ingénierie ? Décrivez-moi votre projet, nous échangerons sans engagement pour définir ensemble la meilleure approche.</p>
+            <a href="mailto:contact@exactshapesolutions.com" class="cta-button" data-i18n="contact.cta">Me contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo+name.png" alt="ExactShape Solutions" class="footer-logo">
+        <p data-i18n="footer.text">&copy; 2026 ExactShape Solutions - Numérisation 3D & Rétro-ingénierie</p>
+    </footer>
+
+    <!-- Containers pour les animations -->
+    <div id="particles-container"></div>
+    <div id="wireframe-container"></div>
+    <div id="mesh-container"></div>
+
+    <!-- Import Three.js EN PREMIER -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Votre script EN SECOND -->
+    <script src="script.js"></script>
+</body>
+</html>
