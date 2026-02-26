@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.title">ExactShape Solutions - Numérisation & Reconstruction 3D</title>
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="perspective-grid-container">
+    <div class="grid-floor"></div>
+</div>
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <img src="logo+name.png" alt="ExactShape Solutions Logo">
+            </a>
+            
+            <div class="burger-menu" id="burgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="mobile-menu-logo">
+                  <img src="logo+name.png" alt="ExactShape Solutions Logo" id="mobileLogoImg">
+                </a>
+                <a href="#presentation" data-i18n="nav.activity">Activité</a>
+                <a href="#engagement" data-i18n="nav.commitment">Engagement</a>
+                <a href="#projets" data-i18n="nav.projects">Projets</a>
+                <a href="#methode" data-i18n="nav.method">Méthode</a>
+                <a href="#contact" data-i18n="nav.contact">Contact</a>
+                <button class="lang-switch" id="langSwitch">EN</button>
+                
+                <button class="theme-switch" id="themeSwitch" aria-label="Changer de thème">
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div class="scroll-progress-container">
+            <div class="scroll-progress-bar" id="progressBar"></div>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="mobile-wireframes">
+                <div class="wireframe-shape shape-1"></div>
+                <div class="wireframe-shape shape-2"></div>
+            </div>
+        </div>
+        <div class="hero-pattern">
+            <div class="laser-scanner"></div>
+        </div>
+        <div class="hero-content">
+            <h1 data-i18n="hero.title">Numérisation 3D & <span class="accent">Rétro-ingénierie</span></h1>
+            
+            <h2 class="hero-tagline" data-i18n="hero.tagline">De la pièce au modèle 3D</h2>
+            
+            <p data-i18n="hero.subtitle">Une approche méthodique.<br>Des modèles 3D exploitables et adaptés à vos projets.</p>            <a href="#contact" class="cta-button" data-i18n="hero.cta">Discutons de votre projet</a>
+        </div>
+    </section>
+
+    <section id="presentation" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="presentation.title">Au service de vos projets</h2>
+            <p class="section-subtitle" data-i18n="presentation.subtitle">ExactShape Solutions accompagne vos besoins en numérisation 3D et rétro-ingénierie</p>
+
+            <div class="carousel-wrapper" id="carousel-presentation">
+                <button class="carousel-btn prev" aria-label="Précédent">❮</button>
+                
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        
+                        <div class="presentation-card">
+                            <div class="project-image comparison-container">
+                                <img src="souris2.png" alt="Scan finalisé" class="img-after">
+                                
+                                <div class="img-before-wrapper">
+                                    <img src="souris.png" alt="Scan brut" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="presentation-content">
+                                <h3 data-i18n="presentation.card1.title">Scan 3D</h3>
+                                <p data-i18n="presentation.card1.text">Scan 3D d’une souris ergonomique.</p>
+                            </div>
+                        </div>
+
+                        <div class="presentation-card">
+                            <div class="project-image comparison-container">
+                                <img src="piece2.png" alt="Pièce reconstruite" class="img-after">
+                                
+                                <div class="img-before-wrapper">
+                                    <img src="piece.webp" alt="Pièce cassée" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="presentation-content">
+                                <h3 data-i18n="presentation.card2.title">Rétro-ingénierie</h3>
+                                <p data-i18n="presentation.card2.text">Reconstruction d’une vitre de feu. Glissez pour voir la pièce cassée vs le modèle final.</p>
+                            </div>
+                        </div>
+
+                        <div class="presentation-card">
+                            <div class="project-image">
+                                <video loop muted playsinline>
+                                    <source src="fusion.mp4" type="video/mp4"> 
+                                </video>
+                            </div>
+                            <div class="presentation-content">
+                                <h3 data-i18n="presentation.card3.title">Modélisation CAO</h3>
+                                <p data-i18n="presentation.card3.text">Modélisation CAO et étude de mouvement d'un mécanisme actionné par verin.</p>
+                            </div>
+                        </div>
+                        <div class="presentation-card">
+                            <div class="project-image comparison-container">
+                                <img src="S30-mesure2.png" alt="Scan finalisé" class="img-after">
+                                
+                                <div class="img-before-wrapper">
+                                    <img src="S30-mesure1.png" alt="Scan brut" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="presentation-content">
+                                <h3 data-i18n="presentation.card4.title"> Titre</h3>
+                                <p data-i18n="presentation.card4.text">Sous titre (fr)</p>
+                            </div>
+                        </div>
+
+                        <div class="presentation-card">
+                            <div class="project-image comparison-container">
+                                <img src="S30-modif2.png" alt="Scan finalisé" class="img-after">
+                                
+                                <div class="img-before-wrapper">
+                                    <img src="S30-modif1.png" alt="Scan brut" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="presentation-content">
+                                <h3 data-i18n="presentation.card5.title">Ajouts</h3>
+                                <p data-i18n="presentation.card5.text">Modification d'une pièce de connexion de tubes par ajout d'une extension</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn next" aria-label="Suivant">❯</button>
+            </div>
+            
+            <div class="carousel-dots" id="dots-presentation"></div>
+        </div>
+    </section>
+
+    <section id="engagement" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="engagement.title">Engagements</h2>
+            <p class="section-subtitle" data-i18n="engagement.subtitle"> Une méthode rigoureuse pour un résultat conforme </p>
+            
+            <div class="engagement-list">
+                <div class="engagement-item">
+                    <div class="engagement-number">1</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step1.title">Vos besoins</h3>
+                        <p data-i18n="engagement.step1.text">Chaque projet commence par une compréhension claire de vos objectifs et de vos contraintes techniques. Cette étape est essentielle pour garantir un résultat aligné avec vos attentes.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">2</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step2.title">Cadrage</h3>
+                        <p data-i18n="engagement.step2.text">Nous établissons ensemble les critères de qualité et les spécifications techniques du livrable, pour une base de travail solide et partagée.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">3</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step3.title">Ajustements</h3>
+                        <p data-i18n="engagement.step3.text">La démarche inclut des validations intermédiaires et des ajustements si nécessaire, pour garantir que le résultat final correspond exactement à votre besoin.</p>
+                    </div>
+                </div>
+                <div class="engagement-item">
+                    <div class="engagement-number">4</div>
+                    <div class="engagement-content">
+                        <h3 data-i18n="engagement.step4.title">Résultat exploitable</h3>
+                        <p data-i18n="engagement.step4.text">Le modèle livré est pensé pour être directement utilisable dans votre chaîne de production, modification ou fabrication.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="projects.title">Projets clients</h2>
+            <p class="section-subtitle" data-i18n="projects.subtitle">Cas concrets et réponses techniques</p>
+
+            <div class="carousel-wrapper" id="carousel-projects">
+                <button class="carousel-btn prev" aria-label="Précédent">❮</button>
+                
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        
+                        <div class="project-card">
+                            <div class="project-image comparison-container">
+                                <img src="piece2.png" alt="Pièce reconstruite" class="img-after">
+                                
+                                <div class="img-before-wrapper" style="width: 50%;">
+                                    <img src="piece.webp" alt="Pièce cassée" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle" style="left: 50%;">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="project-content">
+                                <h3 data-i18n="projects.card1.title">Pièce cassée</h3>
+                                <p class="project-needs"><strong data-i18n="projects.common.need">Besoin </strong> <span data-i18n="projects.card1.need">Remplacer une pièce qui n'est plus disponible ou dont les plans n'existent pas.</span></p>
+                                <div class="separator"></div>
+                                <p class="project-work"><strong data-i18n="projects.common.work">Solution </strong> <span data-i18n="projects.card1.work">Scan 3D de la pièce existante (ou des fragments), rétro-ingénierie et modélisation CAO pour permettre la refabrication.</span></p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image comparison-container">
+                                <img src="souris2.png" alt="Modèle adapté" class="img-after">
+                                
+                                <div class="img-before-wrapper" style="width: 50%;">
+                                    <img src="souris.png" alt="Pièce d'origine" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle" style="left: 50%;">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Original</span>
+                                <span class="label-badge label-after">Modifié</span>
+                            </div>
+                            <div class="project-content">
+                                <h3 data-i18n="projects.card2.title">Adaptation</h3>
+                                <p class="project-needs"><strong data-i18n="projects.common.need">Besoin :</strong> <span data-i18n="projects.card2.need">Modifier une pièce existante pour l'adapter à un nouveau contexte ou à de nouvelles contraintes.</span></p>
+                                <div class="separator"></div>
+                                <p class="project-work"><strong data-i18n="projects.common.work">Solution :</strong> <span data-i18n="projects.card2.work">Numérisation de la pièce d'origine, modélisation CAO et intégration des modifications requises pour le nouveau cahier des charges.</span></p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image">
+                                <video autoplay loop muted playsinline><source src="fusion.mp4" type="video/mp4"></video>
+                            </div>
+                            <div class="project-content">
+                                <h3 data-i18n="projects.card3.title">Alignement Scan</h3>
+                                <p class="project-needs"><strong data-i18n="projects.common.need">Besoin :</strong> <span data-i18n="projects.card3.need">Exploiter un scan 3D déjà réalisé mais non référencé ou mal orienté.</span></p>
+                                <div class="separator"></div>
+                                <p class="project-work"><strong data-i18n="projects.common.work">Solution :</strong> <span data-i18n="projects.card3.work">Mise en référence du scan dans un système de coordonnées cohérent, nettoyage et préparation pour utilisation en CAO.</span></p>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image comparison-container">
+                                <img src="S30-mesure2.png" alt="Pièce reconstruite" class="img-after">
+                                
+                                <div class="img-before-wrapper" style="width: 50%;">
+                                    <img src="S30-mesure1.png" alt="Pièce cassée" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle" style="left: 50%;">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="project-content">
+                                <h3 data-i18n="projects.card4.title">Pièce cassée</h3>
+                                <p class="project-needs"><strong data-i18n="projects.common.need">Besoin </strong> <span data-i18n="projects.card4.need">Remplacer une pièce qui n'est plus disponible ou dont les plans n'existent pas.</span></p>
+                                <div class="separator"></div>
+                                <p class="project-work"><strong data-i18n="projects.common.work">Solution </strong> <span data-i18n="projects.card4.work">Scan 3D de la pièce existante (ou des fragments), rétro-ingénierie et modélisation CAO pour permettre la refabrication.</span></p>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image comparison-container">
+                                <img src="S30-modif2.png" alt="Pièce reconstruite" class="img-after">
+                                
+                                <div class="img-before-wrapper" style="width: 50%;">
+                                    <img src="S30-modif1.png" alt="Pièce cassée" class="img-before">
+                                </div>
+                                
+                                <div class="slider-handle" style="left: 50%;">
+                                    <div class="handle-line"></div>
+                                    <div class="handle-circle">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="label-badge label-before">Scan</span>
+                                <span class="label-badge label-after">3D</span>
+                            </div>
+                            <div class="project-content">
+                                <h3 data-i18n="projects.card5.title">Pièce cassée</h3>
+                                <p class="project-needs"><strong data-i18n="projects.common.need">Besoin </strong> <span data-i18n="projects.card5.need">Remplacer une pièce qui n'est plus disponible ou dont les plans n'existent pas.</span></p>
+                                <div class="separator"></div>
+                                <p class="project-work"><strong data-i18n="projects.common.work">Solution </strong> <span data-i18n="projects.card5.work">Scan 3D de la pièce existante (ou des fragments), rétro-ingénierie et modélisation CAO pour permettre la refabrication.</span></p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <button class="carousel-btn next" aria-label="Suivant">❯</button>
+            </div>
+            <div class="carousel-dots" id="dots-projects"></div>
+        </div>
+    </section>
+
+    <section id="methode" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="method.title">Une approche méthodique</h2>
+            <p class="section-subtitle" data-i18n="method.subtitle">Un processus clair et transparent, du 1er contact à la livraison </p>
+            
+            <div class="method-timeline">
+                <div class="method-step">
+                    <h3 data-i18n="method.step1.title">1. Compréhension du besoin</h3>
+                    <p data-i18n="method.step1.text">Échange initial pour clarifier vos objectifs, contraintes techniques et contexte d'utilisation du modèle final.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step2.title">2. Approche</h3>
+                    <p data-i18n="method.step2.text">Proposition d'une méthode adaptée (scan, rétro-ingénierie, modélisation, méthode hybride) et validation du cadre de travail.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step3.title">3. Travail et ajustements</h3>
+                    <p data-i18n="method.step3.text">Réalisation du projet avec des points de validation intermédiaires pour garantir l'alignement avec vos attentes.</p>
+                </div>
+                <div class="method-step">
+                    <h3 data-i18n="method.step4.title">4. Livraison du résultat</h3>
+                    <p data-i18n="method.step4.text">Remise du modèle 3D final dans le format souhaité, prêt à être intégré dans votre processus de travail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <div class="section-container">
+            <h2 class="section-title" data-i18n="contact.title">Parlons de votre projet</h2>
+            <p data-i18n="contact.text">Vous avez un besoin en numérisation 3D ou rétro-ingénierie ? Décrivez-moi votre projet, nous échangerons sans engagement pour définir ensemble la meilleure approche.</p>
+            <a href="mailto:contact@exactshapesolutions.com" class="cta-button" data-i18n="contact.cta">Me contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo+name.png" alt="ExactShape Solutions" class="footer-logo">
+        <p data-i18n="footer.text">&copy; 2026 ExactShape Solutions - Numérisation 3D & Rétro-ingénierie</p>
+    </footer>
+
+    <div id="mesh-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

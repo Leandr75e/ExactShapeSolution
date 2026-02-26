@@ -1,0 +1,1351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-dark: #171830;
+    --color-primary: #242C5E;
+    --color-light: #F5F1EE;
+    --color-beige: #FBEFD9;
+    --color-accent: #E95625;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* La police Questrial ressemble à 95% à ITC Avant Garde */
+    font-family: 'Questrial', sans-serif;
+    
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+    font-family: 'Questrial', sans-serif;
+    /* On force le gras simulé car Questrial n'a qu'une seule graisse, 
+       cela donne un aspect très graphique */
+    font-weight: 400; 
+    letter-spacing: -0.02em; /* Un peu serré */
+}
+
+h3, h4, .nav-links a, .cta-button {
+    font-family: 'Questrial', sans-serif;
+    letter-spacing: 0.05em; /* Un peu espacé pour la lisibilité */
+}
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1.5rem 5%;
+    background: rgba(23, 24, 48, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(245, 241, 238, 0.1);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 1rem 5%;
+    background: rgba(23, 24, 48, 0.98);
+}
+
+.scroll-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px; /* Hauteur très fine pour rester sobre */
+    background: rgba(255, 255, 255, 0.05); /* Fond de rail très discret */
+    z-index: 1001;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: var(--color-accent); /* Votre orange (#E95625) */
+    width: 0%;
+    box-shadow: 0 0 10px var(--color-accent); /* Légère lueur pour l'effet "néon/tech" */
+    transition: width 0.1s ease-out; /* Transition rapide pour la fluidité */
+    border-radius: 0 2px 2px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    padding: 5px 0;
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+
+header.scrolled .logo img {
+    height: 35px; 
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.lang-switch {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--color-light);
+    color: var(--color-light);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.lang-switch:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 5%;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+    z-index: 0;
+}
+
+.hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, var(--color-light) 2px, var(--color-light) 3px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, var(--color-light) 2px, var(--color-light) 3px);
+    background-size: 40px 40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+
+#presentation, #engagement, #projets, #methode, #contact {
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+#presentation::before, 
+#engagement::before, 
+#projets::before, 
+#methode::before, 
+#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+}
+
+#presentation::before, #projets::before, #contact::before {
+    background: rgba(36, 44, 94, 0.25); /* Plus transparent (était 0.4) */
+}
+
+#engagement::before, #methode::before {
+    background: rgba(23, 24, 48, 0.35); /* Plus transparent (était 0.6) */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.hero h1 .accent {
+    color: var(--color-accent);
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    margin-bottom: 3rem;
+    color: var(--color-beige);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(233, 86, 37, 0.3);
+}
+
+/* Section Styles */
+section {
+    padding: 8rem 5%;
+    position: relative;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-light);
+    font-weight: 600;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-beige);
+    margin-bottom: 3rem;
+    opacity: 0.9;
+}
+
+.hero .hero-tagline {
+    font-size: clamp(1.2rem, 3vw, 1.8rem); /* S'adapte à la taille de l'écran */
+    color: var(--color-accent); /* Couleur orange pour bien ressortir */
+    margin-top: -1rem; /* Rapproche un peu le texte du titre principal */
+    margin-bottom: 2rem; /* Espace avec le paragraphe d'en dessous */
+    font-weight: 500;
+    text-transform: uppercase; /* Met en majuscules pour un côté technique */
+    letter-spacing: 0.1em;
+}
+
+/* Presentation Section */
+#presentation {
+    background: var(--color-primary);
+}
+
+.presentation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.presentation-card {
+    padding: 0; /* IMPORTANT : On enlève le padding ici */
+    background: rgba(245, 241, 238, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(245, 241, 238, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden; /* IMPORTANT : Pour que l'image suive les coins arrondis */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+}
+
+.presentation-content {
+    padding: 2rem; 
+}
+
+.presentation-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    background: rgba(245, 241, 238, 0.12);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.presentation-card h3 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Engagement Section */
+#engagement {
+    background: var(--color-dark);
+}
+
+.engagement-list {
+    display: grid;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.engagement-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.engagement-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.engagement-content h3 {
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.engagement-content p {
+    color: var(--color-beige);
+    opacity: 0.9;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+#projets {
+    /* On applique la même couleur que la section Présentation */
+    background: var(--color-primary); 
+    /* Permet de s'assurer que le z-index fonctionne bien avec le carrousel */
+    position: relative; 
+    z-index: 1;
+}
+
+#projets .project-card {
+    min-width: 450px;  /* Beaucoup plus large que les 320px de base */
+    max-width: 450px;
+    display: flex;     /* Flexbox pour gérer l'intérieur */
+    flex-direction: column; 
+    background: rgba(245, 241, 238, 0.08); /* Un fond légèrement différent */
+    
+    /* On renforce la bordure (0.3 au lieu de 0.1) pour créer un cadre net */
+    border: 1px solid rgba(245, 241, 238, 0.3);
+    
+    /* On ajoute une ombre pour donner de la profondeur (effet 3D) */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    /* Le reste ne change pas */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+#projets .project-image {
+    height: 350px !important; /* Moins haut que les 400px de base */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transform: translateY(-5px);           /* La carte remonte légèrement */
+    border-color: var(--color-accent);     /* Le cadre devient orange */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* L'ombre grandit */
+}
+
+.project-image {
+    width: 100% !important;     /* Force la largeur */
+    height: 400px !important;   
+    overflow: hidden !important; /* Coupe tout ce qui dépasse (CRUCIAL) */
+    position: relative;
+    background-color: var(--color-dark); /* Fond si l'image charge mal */
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px 8px 0 0; /* Arrondi le haut pour faire joli */
+}
+
+.project-image img, 
+.project-image video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* 3. L'effet de zoom au survol */
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+#projets .project-content {
+    padding: 1.5rem;
+    text-align: left; /* Texte aligné à gauche pour faire plus "technique" */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#projets .project-needs, 
+#projets .project-work {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-light);
+}
+
+#projets strong {
+    color: var(--color-beige);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+/* Petite ligne de séparation esthétique */
+#projets .separator {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 0.8rem 0;
+    width: 100%;
+}
+
+/* --- RESPONSIVE MOBILE POUR PROJETS --- */
+@media (max-width: 768px) {
+    /* Sur mobile, on revient à une taille standard pour ne pas déborder */
+    #projets .project-card {
+        min-width: 300px;
+        max-width: 300px;
+    }
+    
+    #projets .project-image {
+        height: 180px !important;
+    }
+}
+
+#projets .project-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+}
+
+.project-content h4 {
+    color: var(--color-light);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.project-content p {
+    color: var(--color-beige);
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+/* Method Section */
+#methode {
+    background: var(--color-dark);
+}
+
+.method-timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding-left: 3rem;
+}
+
+.method-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-accent);
+}
+
+.method-step {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+}
+
+.method-step::before {
+    content: '';
+    position: absolute;
+    left: -3.5rem;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    border: 4px solid var(--color-dark);
+}
+
+.method-step h3 {
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: var(--color-light);
+}
+
+.method-step p {
+    color: var(--color-beige);
+    opacity: 0.9;
+}
+
+/* Contact Section */
+#contact {
+    background: var(--color-primary);
+    text-align: center;
+}
+
+#contact .section-title {
+    margin-bottom: 2rem;
+}
+
+#contact p {
+    font-size: 1.2rem;
+    color: var(--color-beige);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 1.5rem; 
+    padding: 3rem 5%;
+    background: var(--color-dark);
+    border-top: 1px solid rgba(245, 241, 238, 0.1);
+}
+
+.footer-logo {
+    height: 40px; 
+    width: auto;
+    opacity: 0.8; 
+    transition: opacity 0.3s ease;
+}
+
+footer p {
+    color: var(--color-beige);
+    opacity: 0.7;
+}
+
+.footer-logo:hover {
+    opacity: 1; 
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) translateX(var(--drift));
+    }
+}
+
+/* Variantes de taille pour diversité */
+.particle.small {
+    width: 2px;
+    height: 2px;
+    animation-duration: 10s;
+}
+
+.particle.large {
+    width: 4px;
+    height: 4px;
+    animation-duration: 6s;
+}
+
+#mesh-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#mesh-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    /* 1. Afficher le bouton burger */
+    .burger-menu {
+        display: flex !important;
+    }
+
+    /* 2. Transformer le menu en panneau latéral caché à droite */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché hors de l'écran par défaut */
+        width: 70vw; /* Prend 70% de l'écran */
+        height: 100vh;
+        background-color: rgba(23, 24, 48, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem !important;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Support pour votre Light Mode sur mobile */
+    body.light-mode .nav-links {
+        background-color: rgba(244, 247, 251, 0.98);
+    }
+
+    /* 3. Classe active déclenchée par le JS pour ouvrir le menu */
+    .nav-links.nav-active {
+        right: 0 !important;
+    }
+
+    /* 4. Animation du bouton burger en croix "X" */
+    .burger-menu.toggle span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .burger-menu.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.toggle span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 968px) {
+    /* 1. Afficher le bouton burger */
+    .burger-menu {
+        display: flex;
+    }
+
+    /* 2. Transformer le menu en panneau latéral caché à droite */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché hors de l'écran par défaut */
+        width: 70vw; /* Prend 70% de l'écran */
+        height: 100vh;
+        background-color: rgba(23, 24, 48, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    /* Support pour votre Light Mode sur mobile */
+    body.light-mode .nav-links {
+        background-color: rgba(244, 247, 251, 0.98);
+    }
+
+    /* 3. Classe active déclenchée par le JS pour ouvrir le menu */
+    .nav-links.nav-active {
+        right: 0;
+    }
+
+    /* 4. Animation du bouton burger en croix "X" */
+    .burger-menu.toggle span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .burger-menu.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.toggle span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* --- LIGHT MODE (Version Bleu Technique) --- */
+body.light-mode {
+    /* PALETTE BLEUE TECHNIQUE */
+    /* Fond principal : Blanc bleuté (Ice Blue) au lieu du beige */
+    --color-dark: #EEF1F6;      
+    
+    /* Fond secondaire : Gris-bleu acier (Steel Blue) pour le contraste */
+    --color-primary: #F6F8FB;   
+    
+    /* Le texte reste votre bleu marine foncé pour la lisibilité et l'identité */
+    --color-light: #171830;     
+    
+    /* Texte secondaire : Un gris bleuté plus doux */
+    --color-beige: #4B5563;     
+    
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+/* Header avec une teinte bleutée givrée */
+body.light-mode header {
+    background: rgba(244, 247, 251, 0.85); /* Semi-transparent bleuté */
+    backdrop-filter: blur(12px); /* Flou plus prononcé */
+    border-bottom: 1px solid rgba(36, 44, 94, 0.1);
+}
+
+body.light-mode .nav-links a {
+    color: var(--color-light);
+    font-weight: 500; /* Un tout petit peu plus gras pour la lisibilité sur clair */
+}
+
+body.light-mode .lang-switch,
+body.light-mode .theme-switch {
+    border-color: rgba(36, 44, 94, 0.3);
+    color: var(--color-light);
+}
+
+body.light-mode .lang-switch:hover {
+    background: var(--color-accent);
+    color: #6e6060;
+    border-color: var(--color-accent);
+}
+
+/* Cartes : On les met en BLANC PUR pour qu'elles "pop" sur le fond bleu clair */
+body.light-mode .presentation-card,
+body.light-mode .project-card {
+    background: #FFFFFF; 
+    border: 1px solid rgba(36, 44, 94, 0.08); /* Bordure bleu marine très pâle */
+    box-shadow: 0 4px 20px rgba(36, 44, 94, 0.06); /* Ombre bleutée */
+}
+
+body.light-mode .presentation-card:hover,
+body.light-mode .project-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(36, 44, 94, 0.12);
+}
+
+/* Typographie */
+body.light-mode h3, 
+body.light-mode h4,
+body.light-mode .section-title {
+    color: #121d46; /* Bleu marine profond */
+}
+
+body.light-mode .project-content h3 {
+    color: var(--color-accent);
+}
+
+body.light-mode p,
+body.light-mode .section-subtitle {
+    color: var(--color-beige); /* Le gris bleuté défini plus haut */
+}
+
+body.light-mode .grid-floor {
+    /* Lignes de la grille en bleu technique clair */
+    background-image: 
+        linear-gradient(to right, rgba(36, 44, 94, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(36, 44, 94, 0.1) 1px, transparent 1px);
+    
+    /* Masque pour fondre les bords */
+    mask-image: linear-gradient(to bottom, transparent 0%, white 20%, white 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, white 20%, white 80%, transparent 100%);
+}
+
+/* Ajustement spécifique pour la section Contact en Light Mode */
+body.light-mode #contact {
+    /* On force la section contact à être légèrement distincte */
+    background: linear-gradient(135deg, #E1E6ED 0%, #F4F7FB 100%);
+}
+
+/* --- AMÉLIORATION FOND LIGHT MODE --- */
+
+/* On cible les pseudo-éléments ::before qui créent l'effet de fond sur toutes les sections */
+body.light-mode #presentation::before, 
+body.light-mode #engagement::before, 
+body.light-mode #projets::before, 
+body.light-mode #methode::before, 
+body.light-mode #contact::before {
+    /* 1. On désactive le masque rond (l'effet halo/vignette) */
+    mask-image: none;
+    -webkit-mask-image: none;
+    
+    /* 2. On applique un dégradé vertical très subtil */
+    /* Du haut (légèrement bleuté) vers le bas (transparent/blanc) */
+    background: linear-gradient(
+        to bottom, 
+        rgba(36, 44, 94, 0.05) 0%,   /* Haut : Teinte bleu technique très légère */
+        rgba(36, 44, 94, 0.0) 100%   /* Bas : Transparent pour fondre avec la section suivante */
+    );
+
+    /* 3. On nettoie les bordures pour qu'elles soient plus fines en mode clair */
+    border-top: 1px solid rgba(36, 44, 94, 0.08);
+    border-bottom: 1px solid rgba(36, 44, 94, 0.02);
+    
+    /* 4. On s'assure que le flou reste actif (effet verre dépoli subtil) */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+
+
+.carousel-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.carousel-viewport {
+    overflow: hidden; /* Cache ce qui dépasse */
+    width: 100%;
+    padding: 20px 0; /* Espace pour l'ombre et l'effet de zoom */
+    z-index: 10;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px; /* Espace entre les cartes */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Transition fluide comme Astrea */
+    width: max-content; /* S'adapte au contenu */
+    cursor: grab;
+    z-index: 10;
+}
+
+.carousel-track:active {
+    cursor: grabbing;
+}
+
+/* Modification des cartes pour le carrousel */
+.presentation-card, .project-card {
+    min-width: 320px; /* Largeur fixe importante pour le calcul JS */
+    max-width: 320px;
+    flex-shrink: 0;   /* Empêche l'écrasement */
+    opacity: 0.8;     /* Les cartes inactives sont semi-transparentes */
+    transform: scale(0.9); /* Les cartes inactives sont plus petites */
+    transition: all 0.5s ease;
+    /* On garde tes styles existants (bordures, bg...) */
+}
+
+/* La carte active (au milieu) */
+.presentation-card.active, .project-card.active {
+    opacity: 1;
+    transform: scale(1.05); /* Zoom sur la carte active */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    z-index: 10;
+    border-color: var(--color-accent);
+}
+
+/* Boutons de navigation */
+.carousel-btn {
+    background: var(--color-primary);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+    background: var(--color-accent);
+    color: white;
+    transform: scale(1.1);
+}
+
+.carousel-btn.prev { margin-right: 15px; }
+.carousel-btn.next { margin-left: 15px; }
+
+/* Points de navigation (Dots) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 7px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--color-accent);
+    transform: scale(1.3);
+}
+
+/* Responsive Mobile : On adapte la taille */
+@media (max-width: 768px) {
+    .presentation-card, .project-card {
+        min-width: 280px;
+        max-width: 280px;
+    }
+    
+    /* Sur mobile, on peut cacher les flèches et laisser le swipe */
+    .carousel-btn {
+        display: none;
+    }
+}
+
+/* --- COMPARAISON AVANT / APRÈS --- */
+.comparison-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: col-resize; /* Curseur qui indique qu'on peut glisser */
+}
+
+/* L'image du dessous (Après) prend toute la place */
+.comparison-container .img-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Le conteneur de l'image du dessus (Avant) qui va être coupé */
+.comparison-container .img-before-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Démarrage au milieu */
+    height: 100%;
+    overflow: hidden;
+    z-index: 2;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    will-change: width; /* Optimisation performance */
+}
+
+/* L'image du dessus doit avoir la taille du CONTAINER parent, pas du wrapper coupé */
+.comparison-container .img-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* La largeur sera fixée par JS pour correspondre exactement au conteneur parent */
+    width: 100%; 
+    max-width: none !important; /* NOUVEAU : empêche l'image d'être compressée */
+    object-fit: cover;
+    display: block;
+}
+
+/* La barre de contrôle (Slider) */
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%; 
+    height: 100%;
+    width: 4px; /* Zone un peu large pour l'interaction mais visuel fin */
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none; /* Laisse passer les clics pour le script */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* La ligne visuelle fine */
+.slider-handle .handle-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Le rond central avec les flèches */
+.slider-handle .handle-circle {
+    width: 30px;
+    height: 30px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 2px solid white;
+}
+
+/* Badges de texte (Optionnel, pour bien comprendre) */
+.label-badge {
+    position: absolute;
+    top: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.comparison-container:hover .label-badge {
+    opacity: 1;
+}
+
+.label-before { left: 10px; z-index: 20; } /* Sur l'image du dessus */
+.label-after { right: 10px; }
+
+/* --- STACK INFINITE CYCLE --- */
+
+.stack-wrapper {
+    display: grid;
+    place-items: center; 
+    position: relative;
+    max-width: 900px; /* Largeur max de la pile */
+    margin: 4rem auto;
+    height: 600px; /* Hauteur fixe nécessaire pour la zone de pile */
+}
+
+/* On cible les cartes qui sont dans le stack */
+.stack-wrapper .project-card {
+    grid-area: 1 / 1; /* Superpose toutes les cartes au même endroit */
+    width: 100%;
+    max-width: 800px; /* Carte plus large pour le style stack */
+    background: var(--color-dark); /* Fond opaque obligatoire pour cacher celles du dessous */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    
+    /* Animation */
+    /* 15s = temps total (5s par carte x 3 cartes) */
+    animation: stackCycle 15s linear infinite;
+    
+    /* Calcul du délai pour décaler chaque carte : 
+       (Temps total / Nombre cartes) * (Index - 1) * -1 */
+    animation-delay: calc(15s / 3 * (var(--i) - 1) * -1);
+    
+    /* Position de départ */
+    opacity: 0;
+    z-index: 1;
+    transform: translateY(10%) scale(0.9);
+}
+
+/* L'animation clé */
+@keyframes stackCycle {
+    /* 0% à 10% : La carte arrive du fond */
+    0%, 5% {
+        opacity: 0;
+        z-index: 1;
+        transform: translateY(10%) scale(0.9);
+    }
+    
+    /* 10% à 33% : La carte est active (devant) */
+    10%, 33% {
+        opacity: 1;
+        z-index: 10; /* Le plus haut */
+        transform: translateY(0) scale(1);
+    }
+    
+    /* 33% à 40% : La carte s'en va (disparait vers le haut ou fondre) */
+    38% {
+        opacity: 0;
+        z-index: 10;
+        transform: translateY(-5%) scale(1.05); /* Petit effet de zoom en partant */
+    }
+    
+    /* 40% à 100% : Elle attend derrière */
+    40%, 100% {
+        opacity: 0;
+        z-index: 1;
+        transform: translateY(10%) scale(0.9);
+    }
+}
+
+.stack-wrapper:hover .project-card {
+    animation-play-state: paused;
+}
+
+/* Ajustement responsive pour mobile */
+@media (max-width: 768px) {
+    .stack-wrapper {
+        height: 500px;
+    }
+    .stack-wrapper .project-card {
+        max-width: 90%;
+    }
+}
+
+.comparison-container img {
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none; 
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 2001; /* Doit rester au-dessus du menu ouvert */
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color-light);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Positionnement des 3 barres */
+.burger-menu .bar:nth-child(1) { top: 0; }
+.burger-menu .bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.burger-menu .bar:nth-child(3) { bottom: 0; }
+
+/* Animation pour transformer le burger en croix (X) quand il est actif */
+.burger-menu.active .bar:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+.burger-menu.active .bar:nth-child(2) {
+    opacity: 0; /* La barre du milieu disparaît */
+}
+.burger-menu.active .bar:nth-child(3) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Effet de scanner laser uniquement sur mobile */
+.laser-scanner {
+    display: none; /* Caché par défaut */
+}
+
+@media (max-width: 768px) {
+    .laser-scanner {
+        display: block;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        /* Dégradé simulant un rayon laser avec votre couleur accent */
+        background: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(233, 86, 37, 0.05) 50%, 
+            rgba(233, 86, 37, 0.4) 50%, /* Le coeur du rayon */
+            transparent 100%);
+        background-size: 100% 200%;
+        animation: scan 4s ease-in-out infinite;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    @keyframes scan {
+        0% { background-position: 0 -100%; }
+        100% { background-position: 0 100%; }
+    }
+}
+
+.mobile-wireframes {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-wireframes {
+        display: block;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .wireframe-shape {
+        position: absolute;
+        border: 1px solid var(--color-accent);
+        opacity: 0.50; /* Très discret */
+        border-radius: 20%; /* Forme hybride entre carré et cercle */
+    }
+
+    .shape-1 {
+        width: 250px;
+        height: 250px;
+        top: 20%;
+        right: -10%;
+        animation: rotateShape 20s linear infinite;
+    }
+
+    .shape-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 15%;
+        left: -10%;
+        animation: rotateShape 15s linear infinite reverse;
+    }
+
+    .shape-3 {
+        width: 100px;
+        height: 100px;
+        bottom: 10%;
+        right: -10%;
+        animation: rotateShape 10s linear infinite reverse;
+    }
+
+    @keyframes rotateShape {
+        0% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(180deg) scale(1.1); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+}
+
+.mobile-menu-logo {
+    display: none;
+}
+
+@media (max-width: 968px) {
+    .mobile-menu-logo {
+        display: block;
+        margin-bottom: 2rem; 
+        text-align: center;
+    }
+
+    .mobile-menu-logo img {
+        height: 50px; 
+        width: auto;
+    }
+}
